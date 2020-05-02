@@ -3,55 +3,39 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Star Wars - Express</title>
+  <title>Friend Finder</title>
   <!-- Latest compiled and minified CSS & JS -->
-  <link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 
 </head>
 
 <body>
+  <style>
+    body {
+        background-color: lightslategray;
+        }
+    
+    #jumbo{
+        background-color: antiquewhite;
+        }
 
+    </style>
   <div class="container">
-    <div class="jumbotron bg-secondary text-center">
+    <div class="jumbotron text-center" id="jumbo">
       <h1>Friend Finder</h1>
       <h3>Let us match you with someone how likely you will get along with!</h3>
       <hr>
-      <a  href="/survey"><button class="btn text-center btn bg-info btn-lg"><span class="fa fa-plus"></span>Take Survey!</button></a>
-      <a  href="/api/friends"><button class="btn text-center btn bg-info btn-lg"><span
-            class="fa fa-eye"></span> All Friends</button></a>
+      <a href="/survey"><button class="btn text-center btn bg-info btn-lg"><span class="fa fa-plus"></span>Take Survey!</button></a>
+      <a href="/api/friends"><button class="btn text-center btn bg-info btn-lg">
+        <span class="fa fa-eye"></span> All Friends</button></a>
     </div>
    
 
-  <script type="text/javascript">
-    $("#search-btn").on("click", function() {
-      var searchedCharacter = $("#character-search").val().trim();
-
-      // Using a RegEx Pattern to remove spaces from searchedCharacter
-      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-      searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
-
-      $.get("/api/characters/" + searchedCharacter, function(data) {
-        console.log(data);
-        if (data) {
-          $("#stats").show();
-          $("#name").text(data.name);
-          $("#role").text(data.role);
-          $("#age").text(data.age);
-          $("#force-points").text(data.forcePoints);
-        } else {
-          $("#name").text(
-            "The force is not strong with this one. Your character was not found.");
-          $("#stats").hide();
-        }
-      });
-    });
-
-  </script>
+  
 </body>
 
 </html>

@@ -6,153 +6,280 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
-    <title>Hello, world!</title>
+    <title>Survey</title>
   </head>
   <body>
-    <div class="container">
-        <div class="jumbotron">
-
-            Age Group:
-            <br />
-            <div class="btn-group" data-toggle="buttons">
-                <label class="btn btn-secondary">
-                    <input type="radio" autocomplete="off" />1
-                </label>
-                <label class="btn btn-secondary">
-                    <input type="radio" autocomplete="off" />2
-                </label>
-                <label class="btn btn-secondary">
-                    <input type="radio" autocomplete="off" />3
-                </label>
-                <label class="btn btn-secondary">
-                    <input type="radio" autocomplete="off" />4
-                </label>
-                <label class="btn btn-secondary">
-                    <input type="radio" autocomplete="off" />5
-                </label>
-            </div>
-            <br />
-            <br />
-        </div>
-    </div>
-
-        </div>
-    
-            
-    
-    <!-- you need to include the shieldui css and js assets in order for the components to work -->
-    <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
-    <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
-    
-    <script type="text/javascript">
-        jQuery(function ($) {
-            $('#rate1').shieldRating({
-                max: 7,
-                step: 0.1,
-                value: 0,
-                markPreset: false
-            });
-    
-            $('#rate2').shieldRating({
-                max: 7,
-                step: 0.1,
-                value: 0,
-                markPreset: false
-            });
-    
-            $('#rate3').shieldRating({
-                max: 7,
-                step: 0.1,
-                value: 0,
-                markPreset: false
-            });
-    
-            var progress1 = $("#progress1").shieldProgressBar({
-                value: 50,
-                text: {
-                    enabled: true,
-                    template: "{0} %"
-                }
-            }).swidget();
-    
-            var progress2 = $("#progress2").shieldProgressBar({
-                value: 50,
-                text: {
-                    enabled: true,
-                    template: "{0} %"
-                }
-            }).swidget();
-    
-            var progress3 = $("#progress3").shieldProgressBar({
-                value: 50,
-                text: {
-                    enabled: true,
-                    template: "{0} %"
-                }
-            }).swidget();
-    
-    
-            $("#increase1").shieldButton({
-                events: {
-                    click: function () {
-                        progress1.value(progress1.value() + 10);
-                    }
-                }
-            });
-            $("#decrease1").shieldButton({
-                events: {
-                    click: function () {
-                        progress1.value(progress1.value() - 10);
-                    }
-                }
-            });
-    
-            $("#increase2").shieldButton({
-                events: {
-                    click: function () {
-                        progress2.value(progress2.value() + 10);
-                    }
-                }
-            });
-            $("#decrease2").shieldButton({
-                events: {
-                    click: function () {
-                        progress2.value(progress2.value() - 10);
-                    }
-                }
-            });
-    
-            $("#increase3").shieldButton({
-                events: {
-                    click: function () {
-                        progress3.value(progress3.value() + 10);
-                    }
-                }
-            });
-            $("#decrease3").shieldButton({
-                events: {
-                    click: function () {
-                        progress3.value(progress3.value() - 10);
-                    }
-                }
-            });
-        });
-    </script>
-    
     <style>
-        .slider {
-            width: 100%;
-        }
-    </style>
+        body {
+            background-color: lightslategray;
+            }
+        
+        #jumbo{
+            background-color: antiquewhite;
+            }
+        
+        .question{
+            color: white;
+            font-size: 24px;
+            }
+        </style>
+    <div class="container">
+        <div class="jumbotron row" id="jumbo">
+
+            <div class="container content">
+                <h1>Survey</h1>
+                <hr>
+                <p>Take a survey to find your match!</p>
+                 <!-- Modal after survey completion -->
+                 <div id="friendModal" class="modal fade animated slideInRight delay-2s" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Your New Best Friend</h3>
+                            </div>
+                            <div class="modal-body">
+                                <h2 id="friend"></h2>
+                                <img id="friendPhoto" src="#">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--------------------------------------->
+             <!-- Modal after survey completion -->
+             <div id="addFriendModal" class="modal fade animated slideInRight" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">New Friend was added.</h3>
+                        </div>
+                        <div class="modal-body">
+                            <h2 id="addFriend"></h2>
+                            <img id="addFriendPhoto" src="#">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--------------------------------------->
+
+                <form>
+                    <div class="form-group row">
+                        <input id="name" type="text" class="form-control w-50" placeholder="Name">
+                    </div>
+                    <div class="form-group row">
+                        <input id="photo" type="text" class="form-control w-50" placeholder="Link to Profile Photo">
+                    </div>
+                    <div class="form-group row animated slideInRight">
+                        <select class="col-md-3 custom-select" id="q1">
+                            <option selected></option>
+                            <option value="1">Strongly Disagree</option>
+                            <option value="2">Disagree</option>
+                            <option value="3">Okay with it</option>
+                            <option value="4">Agree</option>
+                            <option value="5">Strongly Agree</option>
+                        </select>
+                        <label class="col-md-9"><p class="question">Final Fantasy 7 Remake is the best game of the year!</p></label>
+                    </div>
+                    <div class="form-group row animated slideInLeft">
+                        <select class="col-md-3 custom-select" id="q2">
+                            <option selected></option>
+                            <option value="1">Strongly Disagree</option>
+                            <option value="2">Disagree</option>
+                            <option value="3">Okay with it</option>
+                            <option value="4">Agree</option>
+                            <option value="5">Strongly Agree</option>
+                        </select>
+                            <label class="col-md-9"><p class="question">I call Thursday mini Friday.</p></label>
+                    </div>
+                    <div class="form-group row animated slideInLeft delay-1s">
+                        <select class="col-md-3 custom-select" id="q3">
+                            <option selected></option>
+                            <option value="1">Strongly Disagree</option>
+                            <option value="2">Disagree</option>
+                            <option value="3">Okay with it</option>
+                            <option value="4">Agree</option>
+                            <option value="5">Strongly Agree</option>
+                        </select>
+                            <label class="col-md-9"><p class="question">I like working out everyday.</p></label>
+                    </div>
+                    <div class="form-group row animated slideInRight delay-1s">
+                        <select class="col-md-3 custom-select" id="q4">
+                            <option selected></option>
+                            <option value="1">Strongly Disagree</option>
+                            <option value="2">Disagree</option>
+                            <option value="3">Okay with it</option>
+                            <option value="4">Agree</option>
+                            <option value="5">Strongly Agree</option>
+                        </select>
+                            <label class="col-md-9"><p class="question">I think I am the hottest person in the world.</p></label>
+                    </div>
+                    <div class="form-group row animated slideInLeft delay-2s">
+                        <select class="col-md-3 custom-select" id="q5">
+                            <option selected></option>
+                            <option value="1">Strongly Disagree</option>
+                            <option value="2">Disagree</option>
+                            <option value="3">Okay with it</option>
+                            <option value="4">Agree</option>
+                            <option value="5">Strongly Agree</option>
+                        </select>
+                            <label class="col-md-9"><p class="question">I use Bootstrap for every website I code.</p></label>
+                    </div>
+                    <div class="form-group row animated slideInRight delay-2s">
+                        <select class="col-md-3 custom-select" id="q6">
+                            <option selected></option>
+                            <option value="1">Strongly Disagree</option>
+                            <option value="2">Disagree</option>
+                            <option value="3">Okay with it</option>
+                            <option value="4">Agree</option>
+                            <option value="5">Strongly Agree</option>
+                        </select>
+                            <label class="col-md-9"><p class="question">Money can buy anything you want.</p></label>
+                    </div>
+                    <div class="form-group row animated slideInLeft delay-3s">
+                        <select class="col-md-3 custom-select" id="q7">
+                            <option selected></option>
+                            <option value="1">Strongly Disagree</option>
+                            <option value="2">Disagree</option>
+                            <option value="3">Okay with it</option>
+                            <option value="4">Agree</option>
+                            <option value="5">Strongly Agree</option>
+                        </select>
+                            <label class="col-md-9"><p class="question">The more I learn the more I find out how much I don't know.</p></label>
+                    </div>
+                    <div class="form-group row animated slideInRight delay-3s">
+                        <select class="col-md-3 custom-select" id="q8">
+                            <option selected></option>
+                            <option value="1">Strongly Disagree</option>
+                            <option value="2">Disagree</option>
+                            <option value="3">Okay with it</option>
+                            <option value="4">Agree</option>
+                            <option value="5">Strongly Agree</option>
+                        </select>
+                            <label class="col-md-9"><p class="question">I enjoy 1 hour stuck in traffic.</p></label>
+                    </div>
+                    <div class="form-group row animated slideInLeft delay-4s">
+                        <select class="col-md-3 custom-select" id="q9">
+                            <option selected></option>
+                            <option value="1">Strongly Disagree</option>
+                            <option value="2">Disagree</option>
+                            <option value="3">Okay with it</option>
+                            <option value="4">Agree</option>
+                            <option value="5">Strongly Agree</option>
+                        </select>
+                            <label class="col-md-9"><p class="question">I enjoy watching amime.</p></label>
+                    </div>
+                    <div class="form-group row animated slideInRight delay-4s">
+                        <select class="col-md-3 custom-select" id="q10">
+                            <option selected></option>
+                            <option value="1">Strongly Disagree</option>
+                            <option value="2">Disagree</option>
+                            <option value="3">Okay with it</option>
+                            <option value="4">Agree</option>
+                            <option value="5">Strongly Agree</option>
+                        </select>
+                            <label class="col-md-9"><p class="question">Playstation is better then Xbox!</p></label>
+                    </div>
+                </form>
+                <div class="text-center">
+                    <button id="sub" type="submit" class="btn btn-success btn-lg">Submit</button>
+                </div>
+                
+               
+        
+            <footer>
+                <div class="container">
+                    <a href="/api/friends">API Friends Link </a><span>||
+                    <a href="/">Home Link</a>
+                    </span>
+                    
+                </div>
+            </footer>
+
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+          </body>
+        </html>
+
+
+<script type="text/javascript">
+        
+$("#sub").on("click", function(event) {
+event.preventDefault();
+var newFriend = {
+                name: $("#name").val().trim(),
+                photo: $("#photo").val().trim(),
+                score: [
+                        parseInt($("#q1").val()),
+                        parseInt($("#q2").val()),
+                        parseInt($("#q3").val()),
+                        parseInt($("#q4").val()),
+                        parseInt($("#q5").val()),
+                        parseInt($("#q6").val()),
+                        parseInt($("#q7").val()),
+                        parseInt($("#q8").val()),
+                        parseInt($("#q9").val()),
+                        parseInt($("#q10").val())
+                        ]
+                };
+console.log(newFriend);
+
+$.ajax({ url: "/api/friends", method: "GET" })
+      .then(function(data) {
+
+       
+     console.log(data);
+       
+
+    console.log(newFriend);
+    var pick = 0;
+    var min = 40;
     
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </body>
-</html>
+    for(var i = 0; i < data.length; i++){
+        var total = 0;
+        for(var j = 0; j < data[i].score.length; j++){
+            var diff = Math.abs(newFriend.score[j] - data[i].score[j]);
+            total += diff;
+        }
+        if (total < min){
+            pick = i;
+            min = total;
+        }
+    }
+    console.log(pick);
+    $("#friend").text(data[pick].name);
+	$("#friendPhoto").attr("src", data[pick].photo);
+    $("#friendModal").modal("toggle");
+
+}).then(function(){
+    $.post("/api/friends", newFriend)
+    .done(function(){
+    
+    $("#addFriend").text(newFriend.name);
+	$("#addFriendPhoto").attr("src", newFriend.photo);
+    $("#addFriendModal").modal("toggle");
+});
+})
 
 
+				
+});
+    
+
+
+
+          
+</script>
