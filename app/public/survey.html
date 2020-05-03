@@ -24,7 +24,6 @@
         #jumbo{
             background-color: antiquewhite;
             }
-        
         .question{
             color: white;
             font-size: 24px;
@@ -57,7 +56,7 @@
             </div>
             <!--------------------------------------->
              <!-- Modal after survey completion -->
-             <div id="addFriendModal" class="modal fade animated slideInRight" role="dialog">
+             <div id="addFriendModal" class="modal fade animated slideInLeft" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -66,10 +65,7 @@
                         <div class="modal-body">
                             <h2 id="addFriend"></h2>
                             <img id="addFriendPhoto" src="#">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                        </div>
+                        </div>      
                     </div>
                 </div>
             </div>
@@ -83,7 +79,7 @@
                     <div class="form-group row">
                         <input id="photo" type="text" class="form-control w-50" placeholder="Link to Profile Photo">
                     </div>
-                    <div class="form-group row animated slideInRight">
+                    <div class="form-group row animated flipInY">
                         <select class="col-md-3 custom-select" id="q1">
                             <option selected></option>
                             <option value="1">Strongly Disagree</option>
@@ -94,7 +90,7 @@
                         </select>
                         <label class="col-md-9"><p class="question">Final Fantasy 7 Remake is the best game of the year!</p></label>
                     </div>
-                    <div class="form-group row animated slideInLeft">
+                    <div class="form-group row animated flipInX">
                         <select class="col-md-3 custom-select" id="q2">
                             <option selected></option>
                             <option value="1">Strongly Disagree</option>
@@ -105,7 +101,7 @@
                         </select>
                             <label class="col-md-9"><p class="question">I call Thursday mini Friday.</p></label>
                     </div>
-                    <div class="form-group row animated slideInLeft delay-1s">
+                    <div class="form-group row animated flipInY delay-1s">
                         <select class="col-md-3 custom-select" id="q3">
                             <option selected></option>
                             <option value="1">Strongly Disagree</option>
@@ -116,7 +112,7 @@
                         </select>
                             <label class="col-md-9"><p class="question">I like working out everyday.</p></label>
                     </div>
-                    <div class="form-group row animated slideInRight delay-1s">
+                    <div class="form-group row animated flipInX delay-1s">
                         <select class="col-md-3 custom-select" id="q4">
                             <option selected></option>
                             <option value="1">Strongly Disagree</option>
@@ -127,7 +123,7 @@
                         </select>
                             <label class="col-md-9"><p class="question">I think I am the hottest person in the world.</p></label>
                     </div>
-                    <div class="form-group row animated slideInLeft delay-2s">
+                    <div class="form-group row animated flipInY delay-2s">
                         <select class="col-md-3 custom-select" id="q5">
                             <option selected></option>
                             <option value="1">Strongly Disagree</option>
@@ -138,7 +134,7 @@
                         </select>
                             <label class="col-md-9"><p class="question">I use Bootstrap for every website I code.</p></label>
                     </div>
-                    <div class="form-group row animated slideInRight delay-2s">
+                    <div class="form-group row animated flipInX delay-2s">
                         <select class="col-md-3 custom-select" id="q6">
                             <option selected></option>
                             <option value="1">Strongly Disagree</option>
@@ -149,7 +145,7 @@
                         </select>
                             <label class="col-md-9"><p class="question">Money can buy anything you want.</p></label>
                     </div>
-                    <div class="form-group row animated slideInLeft delay-3s">
+                    <div class="form-group row animated flipInY delay-3s">
                         <select class="col-md-3 custom-select" id="q7">
                             <option selected></option>
                             <option value="1">Strongly Disagree</option>
@@ -160,7 +156,7 @@
                         </select>
                             <label class="col-md-9"><p class="question">The more I learn the more I find out how much I don't know.</p></label>
                     </div>
-                    <div class="form-group row animated slideInRight delay-3s">
+                    <div class="form-group row animated flipInX delay-3s">
                         <select class="col-md-3 custom-select" id="q8">
                             <option selected></option>
                             <option value="1">Strongly Disagree</option>
@@ -171,7 +167,7 @@
                         </select>
                             <label class="col-md-9"><p class="question">I enjoy 1 hour stuck in traffic.</p></label>
                     </div>
-                    <div class="form-group row animated slideInLeft delay-4s">
+                    <div class="form-group row animated flipInY delay-4s">
                         <select class="col-md-3 custom-select" id="q9">
                             <option selected></option>
                             <option value="1">Strongly Disagree</option>
@@ -182,7 +178,7 @@
                         </select>
                             <label class="col-md-9"><p class="question">I enjoy watching amime.</p></label>
                     </div>
-                    <div class="form-group row animated slideInRight delay-4s">
+                    <div class="form-group row animated flipInX delay-4s">
                         <select class="col-md-3 custom-select" id="q10">
                             <option selected></option>
                             <option value="1">Strongly Disagree</option>
@@ -198,14 +194,11 @@
                     <button id="sub" type="submit" class="btn btn-success btn-lg">Submit</button>
                 </div>
                 
-               
-        
             <footer>
                 <div class="container">
                     <a href="/api/friends">API Friends Link </a><span>||
                     <a href="/">Home Link</a>
                     </span>
-                    
                 </div>
             </footer>
 
@@ -240,11 +233,7 @@ console.log(newFriend);
 $.ajax({ url: "/api/friends", method: "GET" })
       .then(function(data) {
 
-       
-     console.log(data);
-       
-
-    console.log(newFriend);
+    console.log(data);
     var pick = 0;
     var min = 40;
     
@@ -271,15 +260,12 @@ $.ajax({ url: "/api/friends", method: "GET" })
     $("#addFriend").text(newFriend.name);
 	$("#addFriendPhoto").attr("src", newFriend.photo);
     $("#addFriendModal").modal("toggle");
+    setTimeout(function(){
+        $("#addFriendModal").modal("hide");
+    }, 2000);
 });
-})
-
-
+});
 				
 });
-    
-
-
-
           
 </script>
